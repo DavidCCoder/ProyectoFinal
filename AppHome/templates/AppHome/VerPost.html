@@ -1,0 +1,36 @@
+{% extends 'AppHome/padre.html' %}
+
+{% load static %}
+
+{% block contenidocambiado %}
+
+    
+    {% if post %}
+
+        
+        {% for post in posts %}
+            
+            <div class="col-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Titulo: {{post.Titulo}}</h5>
+                        <hr />
+                        <h7 class="card-subtitle">Subtitulo: {{past.Subtitulo}}</h7>
+                        <br>
+                        <h7 class="card-subtitle">Autor: {{post.Autor}}</h7>
+                        <br>
+                        <h8 class="card-subtitle">Fecha de creacion: {{post.Fecha}}</h8>
+                    </div>
+                </div>
+            </div>
+     
+        {% endfor %}
+
+    {% else %}
+
+        NO HAY NINGUN POST
+
+    {% endif %}
+        
+
+{% endblock contenidocambiado %}
