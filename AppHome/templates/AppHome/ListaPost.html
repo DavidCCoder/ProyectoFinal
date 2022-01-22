@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Post</title>
+</head>
+<body>
+
+    <h1>Post</h1>
+    <ul>
+        {% for post in object_list %}
+
+            <li>
+                <p>TITULO: {{ post.Titulo }} </p>
+                <P>SUBTITULO: {{ post.Subtitulo }} </P>
+                <p> 
+                    <a href="{% url 'Detalle' post.id %}">Ver</a> | 
+                    <a href="{% url 'Actualiza' post.id %}">Editar</a> |
+                    <a href="{% url 'Borrar' post.id %}">Borrar</a> 
+                </p> 
+            </li>
+
+        {% endfor %}
+    </ul>
+
+    <a href="{% url 'CrearPost'  %}">Nuevo</a> | 
+
+
+</body>
+</html>

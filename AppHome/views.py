@@ -2,14 +2,17 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from AppHome.models import Post
 from AppHome.forms import form_post
+from django.views.generic import ListView
+from django.views.generic.detail import DetailView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 
 # Create your views here.
 
-def ver_post(request):
+#def ver_post(request):
 
-    posts= Post.objects.all()
+#    posts= Post.objects.all()
 
-    return render(request, 'AppHome/VerPost.html',{"posts":posts})
+#    return render(request, 'AppHome/VerPost.html',{"posts":posts})
 
 def inicio(request):
 
@@ -46,5 +49,34 @@ def crear_post(request):
         FormularioPost= form_post()
 
     return render(request, "AppHome/CrearPost.html", {"FormularioPost":FormularioPost})
+
+
+class PostList(ListView):
+
+    model = Post
+    template_name = "AppHome/ListaPost.html"
+
+class PostDetalle(DeleteView):
+
+    model = Post
+    template_name = "AppHome/DetallePost.html"
+
+class PostCreacion(CreateView):
+
+    model = Post
+    success_url = "/AppHome/ListaPost"
+    fields = ['titulo', 'subtitulo']
+
+class PostUpdate(UpdateView):
+
+    model = Post
+    success_url = "/AppHome/ListaPost"
+    fields = ['Titulo', 'Subtitulo', 'Autor', 'Cuerpo']
+
+class PostBorrar(DeleteView):
+
+    model = Post
+    success_url = "/AppHome/ListaPost"
+    template_name = "AppHome/post.confirm.delete.html"
 
 
