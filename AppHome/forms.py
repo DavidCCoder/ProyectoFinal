@@ -1,5 +1,7 @@
 from django import forms
 from ckeditor.widgets import CKEditorWidget
+from django.contrib.auth.forms import UserCreationForm
+from django.forms import PasswordInput
 
 class form_post(forms.Form):
 
@@ -11,3 +13,4 @@ class form_post(forms.Form):
     Cuerpo= forms.CharField(
         widget=CKEditorWidget()
     )
+

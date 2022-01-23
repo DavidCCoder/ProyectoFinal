@@ -1,0 +1,17 @@
+{% extends 'AppHome/padre.html' %}
+
+{% load static %}
+
+{% block contenidocambiado %}
+
+<form action = "" method="POST">
+
+    {% csrf_token %}
+
+    {{form.as_p}}
+
+    <button type="submit">Registro</button>
+
+</form>
+
+{% endblock contenidocambiado %}

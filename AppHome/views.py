@@ -5,15 +5,12 @@ from AppHome.forms import form_post
 from django.views.generic import ListView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth import login, logout, authenticate
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.decorators import login_required
 
-# Create your views here.
-
-#def ver_post(request):
-
-#    posts= Post.objects.all()
-
-#    return render(request, 'AppHome/VerPost.html',{"posts":posts})
-
+@login_required
 def inicio(request):
 
     return render(request, 'AppHome/inicio.html')
@@ -79,4 +76,50 @@ class PostBorrar(DeleteView):
     success_url = "/AppHome/ListaPost"
     template_name = "AppHome/post.confirm.delete.html"
 
+def login_request(request):
 
+    if request.method == "POST":
+        form = AuthenticationForm(request, data = request.POST)
+
+        if form.is_valid():
+            usuario = form.cleaned_data.get('username')
+            contra = form.cleaned_data.get('password')
+
+            user = authenticate(username=usuario, password=contra)
+
+            if user is not None:
+                login(request, user)
+
+                return render(request,"AppHome/inicio.html", {"mensaje":f"Bienvenido {usuario}"})
+
+            else:
+
+                return render(request,"AppHome/inicio.html", {"mensaje":"Error, los datos son incorrectos"})
+
+        else:
+
+            return render(request,"AppHome/inicio.html", {"mensaje":"Error, formulario erroneo"})
+    else:
+
+        form = AuthenticationForm()
+
+        return render(request, "AppHome/login.html", {'form':form})
+
+
+def register(request):
+
+    if request.method == "POST":
+
+        form = UserCreationForm(request.POST)
+
+        if form.is_valid():
+
+            username = form.cleaned_data['username']
+            form.save()
+            return render(request, "AppHome/inicio.html", {"mensaje":"Usuario creado correctamente"})
+
+    else:
+
+        form = UserCreationForm()
+
+    return render(request, "AppHome/registro.html", {"form":form})
