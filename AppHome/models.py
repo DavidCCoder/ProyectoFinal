@@ -10,7 +10,7 @@ from django.contrib.auth.models import User
 
 class Post(models.Model):
 
-    Fecha= models.DateField()
+    Fecha= models.DateTimeField(auto_now_add=True)
     Autor=models.ForeignKey(User, on_delete=models.CASCADE)
     #Autor= models.CharField(max_length=30)
     Titulo= models.CharField(max_length=20)

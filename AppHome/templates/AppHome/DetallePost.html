@@ -8,11 +8,12 @@
 </head>
 <body>
 
-   
+    <p>FECHA: <i>{{ post.Fecha }}</i></p>
     <p>TITULO DEL POST: <i>{{ post.Titulo }}</i></p>
     <p>SUBTITULO DEL POST: <i>{{ post.Subtitulo }}</i></p>
     <p>AUTOR DEL POST: <i>{{ post.Autor }}</i></p>
     <p>DETALLE: <i>{{ post.Cuerpo }}</i></p>
+    
     <p>
         <a href="{% url 'Lista' %}">Regresar</a>
     </p>

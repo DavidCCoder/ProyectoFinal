@@ -5,7 +5,7 @@ from django.forms import PasswordInput
 
 class form_post(forms.Form):
 
-    Fecha= forms.DateField()
+    #Fecha= forms.DateField()
     #Autor= forms.CharField(max_length=30)
     Titulo= forms.CharField(max_length=20)
     Subtitulo= forms.CharField(max_length=40)

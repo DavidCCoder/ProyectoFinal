@@ -30,7 +30,7 @@ def crear_post(request):
             print(FormularioPost)
             if FormularioPost.is_valid():
                 info = FormularioPost.cleaned_data
-                post = Post(Fecha=info['Fecha'],Autor=request.user,Titulo=info['Titulo'],Subtitulo=info['Subtitulo'],Cuerpo=info['Cuerpo'])
+                post = Post(Fecha=Post.Fecha, Autor=request.user,Titulo=info['Titulo'],Subtitulo=info['Subtitulo'],Cuerpo=info['Cuerpo'])
                 post.save()
                 return render(request, "AppHome/inicio.html")
             else:
