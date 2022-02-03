@@ -1,12 +1,18 @@
 from django.db import models
 from ckeditor.fields import RichTextField
+from django.contrib.auth.models import User
+
+
+
+
 
 # Create your models here.
 
 class Post(models.Model):
 
     Fecha= models.DateField()
-    Autor= models.CharField(max_length=30)
+    Autor=models.ForeignKey(User, on_delete=models.CASCADE)
+    #Autor= models.CharField(max_length=30)
     Titulo= models.CharField(max_length=20)
     Subtitulo= models.CharField(max_length=40)
     #Foto= ImageField()

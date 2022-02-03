@@ -24,27 +24,24 @@ def post(request):
     return render(request, 'AppHome/post.html')
 
 def crear_post(request):
-
     if request.method == 'POST':
+        if request.user.is_authenticated:
+            FormularioPost = form_post(data=request.POST,files=request.FILES)
+            print(FormularioPost)
+            if FormularioPost.is_valid():
+                info = FormularioPost.cleaned_data
+                post = Post(Fecha=info['Fecha'],Autor=request.user,Titulo=info['Titulo'],Subtitulo=info['Subtitulo'],Cuerpo=info['Cuerpo'])
+                post.save()
+                return render(request, "AppHome/inicio.html")
+            else:
+                #algo mal en el formulario
+                return render(request, "AppHome/inicio.html",{"mensaje":"Error, datos incorrectos"})
 
-        FormularioPost = form_post(request.POST)
-
-        print(FormularioPost)
-
-        if FormularioPost.is_valid:
-
-            info = FormularioPost.cleaned_data
-
-            post = Post(Fecha=info['Fecha'],Autor=info['Autor'],Titulo=info['Titulo'],Subtitulo=info['Subtitulo'],Cuerpo=info['Cuerpo'])
-
-            post.save()
-
-            return render(request, "AppHome/inicio.html")
-
+        else:
+            #no esta logueado
+            return render(request, "AppHome/inicio.html",{"mensaje":"Error, no esta logueado"})
     else: 
-
         FormularioPost= form_post()
-
     return render(request, "AppHome/CrearPost.html", {"FormularioPost":FormularioPost})
 
 
