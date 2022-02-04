@@ -4,8 +4,16 @@
 
 {% block contenidocambiado %}
 
-<h1>{{mensaje}}</h1>
+<br>
 
-INFORMACION PERSONAL
+{% if request.user.is_authenticated %}
+
+    <div class="text-center">
+        <img height="100" width="100" src="{{url}}">
+        <h3>Gracias por volver {{user.username}}</h3>
+    </div>
+
+{% endif %}
+    
 
 {% endblock contenidocambiado %}

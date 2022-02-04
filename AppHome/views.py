@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from AppHome.models import Post
-from AppHome.forms import form_post
+from AppHome.models import Post, Avatar
+from AppHome.forms import form_post, UserEditForm, UserRegisterForm
 from django.views.generic import ListView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
@@ -13,7 +13,9 @@ from django.contrib.auth.decorators import login_required
 @login_required
 def inicio(request):
 
-    return render(request, 'AppHome/inicio.html')
+    avatares = Avatar.objects.filter(user=request.user.id)
+
+    return render(request, 'AppHome/inicio.html', {"url":avatares[0].imagen.url})
 
 def padre(request):
 
@@ -23,6 +25,7 @@ def post(request):
 
     return render(request, 'AppHome/post.html')
 
+@login_required
 def crear_post(request):
     if request.method == 'POST':
         if request.user.is_authenticated:
@@ -107,7 +110,8 @@ def register(request):
 
     if request.method == "POST":
 
-        form = UserCreationForm(request.POST)
+        #form = UserCreationForm(request.POST)
+        form = UserRegisterForm(request.POST)
 
         if form.is_valid():
 
@@ -117,6 +121,31 @@ def register(request):
 
     else:
 
-        form = UserCreationForm()
+        form = UserRegisterForm()
 
     return render(request, "AppHome/registro.html", {"form":form})
+
+@login_required
+def editarPerfil(request):
+ 
+      usuario = request.user
+     
+      if request.method == 'POST':
+            miFormulario = UserEditForm(request.POST) 
+            if miFormulario.is_valid():   
+
+                  informacion = miFormulario.cleaned_data
+
+                  usuario.username = informacion['username']
+                  usuario.email = informacion['email']
+                  usuario.password1 = informacion['password1']
+                  usuario.password2 = informacion['password1']
+                  usuario.save()
+
+                  return render(request, "AppHome/inicio.html") 
+      
+      else: 
+            
+            miFormulario= UserEditForm(initial={ 'email':usuario.email}) 
+
+      return render(request, "AppHome/editarPerfil.html", {"miFormulario":miFormulario, "usuario":usuario})
