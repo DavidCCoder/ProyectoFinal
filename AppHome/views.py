@@ -25,6 +25,10 @@ def post(request):
 
     return render(request, 'AppHome/post.html')
 
+def informacion(request):
+
+    return render(request, 'AppHome/informacion.html')
+
 @login_required
 def crear_post(request):
     if request.method == 'POST':
@@ -33,7 +37,7 @@ def crear_post(request):
             print(FormularioPost)
             if FormularioPost.is_valid():
                 info = FormularioPost.cleaned_data
-                post = Post(Fecha=Post.Fecha, Autor=request.user,Titulo=info['Titulo'],Subtitulo=info['Subtitulo'],Foto=info['Foto'], Cuerpo=info['Cuerpo'])
+                post = Post(Fecha=Post.Fecha, Autor=request.user,Titulo=info['Titulo'],Subtitulo=info['Subtitulo'],Foto=info['Foto'], Cuerpo=info['Cuerpo'], Equipo=info['Equipo'])
                 post.save()
                 #return render(request, "AppHome/inicio.html")
                 return redirect('post')
@@ -150,3 +154,4 @@ def editarPerfil(request):
             miFormulario= UserEditForm(initial={ 'email':usuario.email}) 
 
       return render(request, "AppHome/editarPerfil.html", {"miFormulario":miFormulario, "usuario":usuario})
+

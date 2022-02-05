@@ -11,12 +11,14 @@ class Post(models.Model):
     #Autor= models.CharField(max_length=30)
     Titulo= models.CharField(max_length=20)
     Subtitulo= models.CharField(max_length=40)
+    Equipo= models.CharField(max_length=30, null=True)
     Foto= models.ImageField(upload_to="imagenes", null=True)
     Cuerpo= RichTextField()
 
     def __str__(self):
 
         return f"Titulo: {self.Titulo} - Subtitulo: {self.Subtitulo}"
+
         
 class Avatar(models.Model):
     
