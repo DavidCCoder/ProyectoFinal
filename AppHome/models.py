@@ -2,10 +2,6 @@ from django.db import models
 from ckeditor.fields import RichTextField
 from django.contrib.auth.models import User
 
-
-
-
-
 # Create your models here.
 
 class Post(models.Model):
@@ -15,7 +11,7 @@ class Post(models.Model):
     #Autor= models.CharField(max_length=30)
     Titulo= models.CharField(max_length=20)
     Subtitulo= models.CharField(max_length=40)
-    #Foto= ImageField()
+    Foto= models.ImageField(upload_to="imagenes", null=True)
     Cuerpo= RichTextField()
 
     def __str__(self):

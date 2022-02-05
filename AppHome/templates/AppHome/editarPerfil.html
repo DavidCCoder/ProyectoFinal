@@ -5,9 +5,11 @@
 {% block contenidocambiado %}
 
 
-    <!--Aquí va lo que cambia, y lo asociado a está vista :) -->
-    <h1>Formulario - Editar Perfil</h1>
-    <h1>De {{usuario}}</h1>
+    <div style="color: blue;">
+        <h1>Editar perfil de usuario: {{usuario}}</h1>
+    </div>
+    
+    
     
 
     <form action="" method="POST">{% csrf_token %}
@@ -21,7 +23,7 @@
 
         </table>
 
-
+        <br>
         <input type="submit", value="Enviar">
 
     </form>

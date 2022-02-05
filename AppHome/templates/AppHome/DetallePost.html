@@ -12,6 +12,13 @@
     <p>TITULO DEL POST: <i>{{ post.Titulo }}</i></p>
     <p>SUBTITULO DEL POST: <i>{{ post.Subtitulo }}</i></p>
     <p>AUTOR DEL POST: <i>{{ post.Autor }}</i></p>
+    <p>IMAGEN: <i> 
+        <div aling="center">
+
+            <img src="{{ post.Foto.url }}" height="300" width="300"> </i></p>
+            
+        </div>
+        
     <p>DETALLE: <i>{{ post.Cuerpo | safe }}</i></p>
     
     <p>

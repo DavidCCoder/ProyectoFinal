@@ -10,8 +10,14 @@
 
     <div class="text-center">
         <img height="100" width="100" src="{{url}}">
-        <h3>Gracias por volver {{user.username}}</h3>
+        <h3>A disfrutar del Blog {{user.username}}</h3>
     </div>
+
+    {% else %}
+
+        <div class="text-center">
+            <h3>{{mensaje}}</h3>
+        </div>
 
 {% endif %}
     

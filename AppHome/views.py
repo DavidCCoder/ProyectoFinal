@@ -1,6 +1,6 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
-from AppHome.models import Post, Avatar
+from AppHome.models import Post, Avatar, User
 from AppHome.forms import form_post, UserEditForm, UserRegisterForm
 from django.views.generic import ListView
 from django.views.generic.detail import DetailView
@@ -29,13 +29,14 @@ def post(request):
 def crear_post(request):
     if request.method == 'POST':
         if request.user.is_authenticated:
-            FormularioPost = form_post(data=request.POST,files=request.FILES)
+            FormularioPost = form_post(request.POST,files=request.FILES)
             print(FormularioPost)
             if FormularioPost.is_valid():
                 info = FormularioPost.cleaned_data
-                post = Post(Fecha=Post.Fecha, Autor=request.user,Titulo=info['Titulo'],Subtitulo=info['Subtitulo'],Cuerpo=info['Cuerpo'])
+                post = Post(Fecha=Post.Fecha, Autor=request.user,Titulo=info['Titulo'],Subtitulo=info['Subtitulo'],Foto=info['Foto'], Cuerpo=info['Cuerpo'])
                 post.save()
-                return render(request, "AppHome/inicio.html")
+                #return render(request, "AppHome/inicio.html")
+                return redirect('post')
             else:
                 #algo mal en el formulario
                 return render(request, "AppHome/inicio.html",{"mensaje":"Error, datos incorrectos"})
@@ -68,7 +69,7 @@ class PostUpdate(UpdateView):
 
     model = Post
     success_url = "/AppHome/ListaPost"
-    fields = ['Titulo', 'Subtitulo', 'Autor', 'Cuerpo']
+    fields = ['Titulo', 'Subtitulo', 'Autor', 'Cuerpo', 'Foto']
 
 class PostBorrar(DeleteView):
 
@@ -89,8 +90,7 @@ def login_request(request):
 
             if user is not None:
                 login(request, user)
-
-                return render(request,"AppHome/inicio.html", {"mensaje":f"Bienvenido {usuario}"})
+                return redirect('inicio')
 
             else:
 
@@ -98,7 +98,7 @@ def login_request(request):
 
         else:
 
-            return render(request,"AppHome/inicio.html", {"mensaje":"Error, formulario erroneo"})
+            return render(request,"AppHome/inicio.html", {"mensaje":"Error, los datos ingresados son incorrectos"})
     else:
 
         form = AuthenticationForm()
@@ -117,7 +117,8 @@ def register(request):
 
             username = form.cleaned_data['username']
             form.save()
-            return render(request, "AppHome/inicio.html", {"mensaje":"Usuario creado correctamente"})
+            #return render(request, "AppHome/inicio.html", {"mensaje":"Usuario creado correctamente"})
+            return redirect('inicio')
 
     else:
 
