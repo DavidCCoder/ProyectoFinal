@@ -70,7 +70,7 @@ class PostCreacion(CreateView):
     fields = ['titulo', 'subtitulo']
 
 class PostUpdate(UpdateView):
-
+    
     model = Post
     success_url = "/AppHome/ListaPost"
     fields = ['Titulo', 'Subtitulo', 'Autor', 'Cuerpo', 'Foto']
