@@ -75,6 +75,8 @@ class PostUpdate(UpdateView):
     success_url = "/AppHome/ListaPost"
     fields = ['Titulo', 'Subtitulo', 'Autor', 'Cuerpo', 'Foto']
 
+
+
 class PostBorrar(DeleteView):
 
     model = Post
