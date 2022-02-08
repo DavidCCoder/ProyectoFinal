@@ -21,6 +21,8 @@ urlpatterns = [
     path("Register", views.register, name= 'Register'),
     path("editarPerfil", views.editarPerfil, name= "EditarPerfil"),
     path("informacion", views.informacion, name= 'informacion'),
+
+    path('agregarAvatar', views.agregarAvatar, name="AgregarAvatar"),
     
 
    

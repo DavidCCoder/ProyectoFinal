@@ -39,11 +39,14 @@ class UserRegisterForm(UserCreationForm):
     email = forms.EmailField()
     password1 = forms.CharField(label='Contraseña', widget=forms.PasswordInput)
     password2 = forms.CharField(label='Repetir la contraseña', widget=forms.PasswordInput) 
-    avatar = forms.ImageField(required=False)
+    #avatar = forms.ImageField(required=False)
 
     class Meta:
         model = User
-        fields = ['first_name', 'last_name', 'username', 'email', 'password1', 'password2', 'avatar'] 
+        fields = ['first_name', 'last_name', 'username', 'email', 'password1', 'password2'] 
         #Saca los mensajes de ayuda
         help_texts = {k:"" for k in fields}
 
+class AvatarFormulario(forms.Form):
+ 
+    imagen = forms.ImageField(required=True)

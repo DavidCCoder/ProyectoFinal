@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from AppHome.models import Post, Avatar, User
-from AppHome.forms import form_post, UserEditForm, UserRegisterForm
+from AppHome.forms import form_post, UserEditForm, UserRegisterForm, AvatarFormulario
 from django.views.generic import ListView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
@@ -114,15 +114,16 @@ def register(request):
 
     if request.method == "POST":
 
-        #form = UserCreationForm(request.POST)
         form = UserRegisterForm(request.POST)
 
         if form.is_valid():
-
-            username = form.cleaned_data['username']
             form.save()
-            #return render(request, "AppHome/inicio.html", {"mensaje":"Usuario creado correctamente"})
-            return redirect('inicio')
+            username = form.cleaned_data.get("username")
+            password = form.cleaned_data.get("password1")
+            user = authenticate(username=username, password=password)
+            if user is not None:
+                login(request, user)
+                return redirect('AgregarAvatar')
 
     else:
 
@@ -155,3 +156,26 @@ def editarPerfil(request):
 
       return render(request, "AppHome/editarPerfil.html", {"miFormulario":miFormulario, "usuario":usuario})
 
+
+@login_required
+def agregarAvatar(request):
+      if request.method == 'POST':
+
+            miFormulario = AvatarFormulario(request.POST, request.FILES) 
+
+            if miFormulario.is_valid():   
+
+
+                  u = User.objects.get(username=request.user)
+                
+                  avatar = Avatar (user=u, imagen=miFormulario.cleaned_data['imagen']) 
+      
+                  avatar.save()
+
+                  return redirect('inicio')
+
+      else: 
+
+            miFormulario= AvatarFormulario() 
+
+      return render(request, "AppHome/agregarAvatar.html", {"miFormulario":miFormulario})
