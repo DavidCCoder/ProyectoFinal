@@ -7,6 +7,7 @@ urlpatterns = [
     path("", views.inicio, name= 'inicio'),
     path("post", views.post, name= 'post'),
     path("CrearPost", views.crear_post, name="CrearPost"),
+    
 
 
     path("ListaPost/", views.PostList.as_view(), name = 'Lista'),
