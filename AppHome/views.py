@@ -9,6 +9,7 @@ from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import UserPassesTestMixin
 
 @login_required
 def inicio(request):
@@ -52,7 +53,6 @@ def crear_post(request):
         FormularioPost= form_post()
     return render(request, "AppHome/CrearPost.html", {"FormularioPost":FormularioPost})
 
-
 class PostList(ListView):
 
     model = Post
@@ -69,11 +69,19 @@ class PostCreacion(CreateView):
     success_url = "/AppHome/ListaPost"
     fields = ['titulo', 'subtitulo']
 
-class PostUpdate(UpdateView):
 
+
+class PostUpdate(UserPassesTestMixin,UpdateView):
+    
     model = Post
     success_url = "/AppHome/ListaPost"
-    fields = ['Titulo', 'Subtitulo', 'Autor', 'Cuerpo', 'Foto']
+    #form_class = form_post
+    fields = ['Titulo', 'Subtitulo', 'Cuerpo', 'Foto']
+
+    def test_func(self):
+        post=Post.objects.get(id=self.kwargs["pk"])
+        return(self.request.user.is_authenticated and (self.request.user.id == post.Autor.id or self.request.user.is_staff))
+
 
 class PostBorrar(DeleteView):
 
