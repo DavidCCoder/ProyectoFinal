@@ -83,11 +83,15 @@ class PostUpdate(UserPassesTestMixin,UpdateView):
         return(self.request.user.is_authenticated and (self.request.user.id == post.Autor.id or self.request.user.is_staff))
 
 
-class PostBorrar(DeleteView):
+class PostBorrar(UserPassesTestMixin,DeleteView):
 
     model = Post
     success_url = "/AppHome/ListaPost"
     template_name = "AppHome/post.confirm.delete.html"
+
+    def test_func(self):
+        post=Post.objects.get(id=self.kwargs["pk"])
+        return(self.request.user.is_authenticated and (self.request.user.id == post.Autor.id or self.request.user.is_staff))
 
 def login_request(request):
 
