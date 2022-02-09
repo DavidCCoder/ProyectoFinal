@@ -1,12 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lista de Post</title>
-</head>
-<body>
+{% extends 'AppHome/padre.html' %}
+
+{% load static %}
+
+{% block contenidopost %}
+
+<br>
+
 
     <span style="color:sienna;border-image: initial; border: 3px solid sienna; font-size: 30px;">Lista de Post: </span>
     <ul>
@@ -29,5 +28,4 @@
     <a href="{% url 'post' %}">Regresar</a> 
 
 
-</body>
-</html>
+{% endblock contenidopost %}
