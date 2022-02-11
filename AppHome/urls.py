@@ -28,7 +28,5 @@ urlpatterns = [
     path('ListaMensajes/', views.MensajeList.as_view(), name = 'ListaMensajes'),
     path("DetalleMensajes/<pk>/", views.MensajeDetalle.as_view(), name = 'DetalleMensajes'),
     path('Mensajes', views.mensajes, name = 'Mensajes'),
-    
 
-   
 ]

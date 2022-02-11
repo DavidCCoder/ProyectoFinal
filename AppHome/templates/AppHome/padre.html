@@ -28,7 +28,11 @@
                 <a class="btn btn-secondary" style="background-color: skyblue; color: black;" href="{% url 'post' %}">Post</a>  
                 <a class="btn btn-primary" href="{% url 'Register' %}">Registro</a>
                 <a class="btn btn-primary" href="{% url 'EditarPerfil' %}">Editar perfil</a>
+
+                {% if request.user.is_authenticated and request.user.is_staff %}
                 <a class="btn btn-primary" href="{% url 'Mensajes' %}">Mensajes</a>
+                {% endif %}
+
                 <a class="btn btn-primary" style="color: antiquewhite; background-color: red; border-color: red;" href="{% url 'Logout' %}">Logout</a>
 
                 {% if not request.user.is_authenticated %}
@@ -72,7 +76,7 @@
                     <div class="col-lg-6 h-100 text-center text-lg-start my-auto">
                         <p class="text-muted small mb-4 mb-lg-0">&copy; Your Website 2021. All Rights Reserved.</p>
                         <br>
-                        <a class="text-muted small mb-4 mb-lg-0" href="{% url 'informacion' %}">About</a>
+                        <a class="text small mb-4 mb-lg-0" href="{% url 'informacion' %}">Sobre nosotros</a>
                     </div>
                     <div class="col-lg-6 h-100 text-center text-lg-end my-auto">
                         <ul class="list-inline mb-0">

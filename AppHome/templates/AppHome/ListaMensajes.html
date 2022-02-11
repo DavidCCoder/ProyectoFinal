@@ -7,7 +7,9 @@
 <br>
 
 
-    <span style="color:sienna;border-image: initial; border: 3px solid sienna; font-size: 30px; margin-left: 5px;">Lista de Mensajes: </span>
+    <span style="color:blue;border-image: initial; border: 3px solid blue; font-size: 30px; margin-left: 5px;">Lista de Mensajes: </span>
+    <br>
+    <br>
     <ul>
         {% for mensaje in object_list %}
 
@@ -22,7 +24,7 @@
         {% endfor %}
     </ul>
 
-    <a href="{% url 'Mensajes' %}">Regresar</a> 
+    <a href="{% url 'Mensajes' %}" style="margin-left: 10px;">Regresar</a> 
 
 
 {% endblock contenidopost %}

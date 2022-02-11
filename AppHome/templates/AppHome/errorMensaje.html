@@ -1,0 +1,14 @@
+{% extends 'AppHome/padre.html' %}
+
+{% load static %}
+
+{% block contenidopost %}
+
+<div align="center" style="margin-top: 15px">
+    <div class="alert alert-danger">
+        <a href="{% url 'inicio' %}" class="alert-link" style="text-center" >Permiso denegado, clik aqui para volver al inicio</a>
+    </div>
+</div>
+
+
+{% endblock contenidopost %}

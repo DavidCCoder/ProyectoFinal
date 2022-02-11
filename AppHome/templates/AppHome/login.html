@@ -4,14 +4,18 @@
 
 {% block contenidocambiado %}
 
-<form action = "" method="POST">
+<div align="center" style="margin-top: 10px">
 
-    {% csrf_token %}
+    <form action = "" method="POST">
 
-    {{form.as_p}}
+        {% csrf_token %}
 
-    <button type="submit">Iniciar sesión</button>
+        {{form.as_p}}
 
-</form>
+        <button type="submit">Iniciar sesión</button>
+
+    </form>
+
+</div>
 
 {% endblock contenidocambiado %}

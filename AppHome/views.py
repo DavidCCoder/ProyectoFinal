@@ -24,7 +24,13 @@ def padre(request):
 
 def mensajes(request):
 
-    return render(request, 'AppHome/mensajes.html')
+    if request.user.is_authenticated and request.user.is_staff: 
+
+        return render(request, 'AppHome/mensajes.html')
+    
+    else:
+
+        return render(request, 'AppHome/errorMensaje.html')
 
 def post(request):
 
@@ -224,3 +230,4 @@ class MensajeDetalle(DetailView):
 
     model = Mensajeria
     template_name = "AppHome/DetalleMensajes.html"
+

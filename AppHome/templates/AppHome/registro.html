@@ -4,16 +4,22 @@
 
 {% block contenidocambiado %}
 
-<h1>Formulario para registro</h1>
+<div style="margin-left: 10px;">
 
-<form action = "" method="POST" enctype="multipart/form-data">
+    <h1>Formulario para registro</h1>
 
-    {% csrf_token %}
+    <form action = "" method="POST" enctype="multipart/form-data">
 
-    {{form.as_p}}
+        {% csrf_token %}
 
-    <button type="submit">Regsitrarme</button>
+        {{form.as_p}}
 
-</form>
+        <button type="submit">Regsitrarme</button>
+
+    </form>
+
+</div>
+
+
 
 {% endblock contenidocambiado %}

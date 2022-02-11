@@ -4,27 +4,18 @@
 
 {% block contenidopost %}
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mensaje Detalle</title>
-</head>
-<body>
+<div style="margin-left: 20px; margin-top: 10px">
 
-    <p>AUTOR: <i>{{ mensaje.Autor }}</i></p>
-    <p>FECHA: <i>{{ mensaje.Fecha }}</i></p>
-    <p>ASUNTO: <i>{{ mensaje.Asunto }}</i></p>
-    <p>DETALLE: <i>{{ mensaje.Mensaje | safe }}</i></p>
+    <p>AUTOR: <i>{{ object.Autor }}</i></p>
+    <p>FECHA: <i>{{ object.Fecha }}</i></p>
+    <p>ASUNTO: <i>{{ object.Asunto }}</i></p>
+    <p>DETALLE: <i>{{ object.Mensaje | safe }}</i></p>
     
     <p>
         <a href="{% url 'ListaMensajes' %}">Regresar</a>
     </p>
 
-    
-</body>
-</html>
+</div>
+
 
 {% endblock contenidopost %}
