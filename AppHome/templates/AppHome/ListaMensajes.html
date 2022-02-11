@@ -1,0 +1,28 @@
+{% extends 'AppHome/padre.html' %}
+
+{% load static %}
+
+{% block contenidopost %}
+
+<br>
+
+
+    <span style="color:sienna;border-image: initial; border: 3px solid sienna; font-size: 30px; margin-left: 5px;">Lista de Mensajes: </span>
+    <ul>
+        {% for mensaje in object_list %}
+
+            <li>
+                <p>AUTOR: {{ mensaje.Autor }} </p>
+                <P>ASUNTO: {{ mensaje.Asunto }} </P>
+                <p> 
+                    <a href="{% url 'DetalleMensajes' mensaje.id %}">Ver</a> 
+                </p> 
+            </li>
+
+        {% endfor %}
+    </ul>
+
+    <a href="{% url 'Mensajes' %}">Regresar</a> 
+
+
+{% endblock contenidopost %}

@@ -9,8 +9,8 @@ class Post(models.Model):
     Fecha= models.DateTimeField(auto_now_add=True)
     Autor=models.ForeignKey(User, on_delete=models.CASCADE)
     #Autor= models.CharField(max_length=30)
-    Titulo= models.CharField(max_length=20)
-    Subtitulo= models.CharField(max_length=40)
+    Titulo= models.CharField(max_length=40)
+    Subtitulo= models.CharField(max_length=50)
     Equipo= models.CharField(max_length=30, null=True)
     Foto= models.ImageField(upload_to="imagenes", null=True)
     Cuerpo= RichTextField()
@@ -27,3 +27,14 @@ class Avatar(models.Model):
 
     def __str__(self):
         return f"Imagen de: {self.user.username}"
+
+class Mensajeria(models.Model):
+
+    Fecha = models.DateTimeField(auto_now_add=True)
+    Autor = models.ForeignKey(User, on_delete=models.CASCADE)
+    Asunto = models.CharField(max_length=60)
+    Mensaje = RichTextField() 
+
+    def __str__(self):
+
+        return f"Asunto: {self.Asunto}"

@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
-from AppHome.models import Post, Avatar, User
-from AppHome.forms import form_post, UserEditForm, UserRegisterForm, AvatarFormulario
+from AppHome.models import Post, Avatar, User, Mensajeria
+from AppHome.forms import form_post, UserEditForm, UserRegisterForm, AvatarFormulario, form_mensajeria
 from django.views.generic import ListView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
@@ -22,9 +22,13 @@ def padre(request):
 
     return render(request, 'AppHome/padre.html')
 
+def mensajes(request):
+
+    return render(request, 'AppHome/mensajes.html')
+
 def post(request):
 
-    return render(request, 'AppHome/post.html')
+    return render(request, 'AppHome/post.html')    
 
 def informacion(request):
 
@@ -58,7 +62,7 @@ class PostList(ListView):
     model = Post
     template_name = "AppHome/ListaPost.html"
 
-class PostDetalle(DeleteView):
+class PostDetalle(DetailView):
 
     model = Post
     template_name = "AppHome/DetallePost.html"
@@ -68,8 +72,6 @@ class PostCreacion(CreateView):
     model = Post
     success_url = "/AppHome/ListaPost"
     fields = ['titulo', 'subtitulo']
-
-
 
 class PostUpdate(UserPassesTestMixin,UpdateView):
     
@@ -191,3 +193,33 @@ def agregarAvatar(request):
             miFormulario= AvatarFormulario() 
 
       return render(request, "AppHome/agregarAvatar.html", {"miFormulario":miFormulario})
+
+@login_required
+def enviar_mensaje(request):
+    if request.method == 'POST':
+        if request.user.is_authenticated:
+            FormularioMensaje = form_mensajeria(request.POST)
+            #print(FormularioMensaje)
+            if FormularioMensaje.is_valid():
+                datos = FormularioMensaje.cleaned_data
+                mensaje = Mensajeria(Fecha=Mensajeria.Fecha, Autor=request.user,Asunto=datos['Asunto'],Mensaje=datos['Mensaje'])
+                mensaje.save()
+                return redirect('inicio')
+            else:
+                return render(request, "AppHome/inicio.html",{"mensaje":"Error, datos incorrectos"})
+
+        else:
+            return render(request, "AppHome/inicio.html",{"mensaje":"Error, no esta logueado"})
+    else: 
+        FormularioMensaje= form_mensajeria()
+    return render(request, "AppHome/enviarMensaje.html", {"FormularioMensaje":FormularioMensaje})
+
+class MensajeList(ListView):
+
+    model = Mensajeria
+    template_name = "AppHome/ListaMensajes.html"
+
+class MensajeDetalle(DetailView):
+
+    model = Mensajeria
+    template_name = "AppHome/DetalleMensajes.html"

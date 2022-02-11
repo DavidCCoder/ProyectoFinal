@@ -1,5 +1,5 @@
 from django import forms
-from .models import Post
+from .models import Post, Mensajeria
 from ckeditor.widgets import CKEditorWidget
 from django.contrib.auth.forms import UserCreationForm
 from django.forms import PasswordInput
@@ -50,3 +50,12 @@ class UserRegisterForm(UserCreationForm):
 class AvatarFormulario(forms.Form):
  
     imagen = forms.ImageField(required=True)
+
+class form_mensajeria(forms.Form):
+
+    #Fecha = models.DateTimeField(auto_now_add=True)
+    #Autor = models.ForeignKey(User, on_delete=models.CASCADE)
+    Asunto = forms.CharField(max_length=60)
+    Mensaje = forms.CharField(
+        widget=CKEditorWidget()
+    ) 

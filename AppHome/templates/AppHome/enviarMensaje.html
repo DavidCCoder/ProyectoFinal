@@ -10,26 +10,26 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CREAR POST</title>
+    <title>Enviar Mensaje</title>
 </head>
 <body>
     <div style="margin-left: 20px;">
-        <p style="color: rgb(0, 0, 0);" style="font-size: 8px;">CREAR UN NUEVO POST</p>
+        <br>
+        <p style="color: rgb(0, 0, 0);" style="font-size: 8px;">ENVIAR UN MENSAJE</p>
         <br>
     
         <form action="" method="POST" enctype="multipart/form-data">
             
             {% csrf_token %}
-    
-            {{FormularioPost.media}}
-            {{FormularioPost.as_p}}
+            
+            {{FormularioMensaje.media}}
+            {{FormularioMensaje.as_p}}
     
             <input type="submit" value="Enviar">
     
         </form>
     </div>
-    <br>
- 
+
 </body>
 </html>
 

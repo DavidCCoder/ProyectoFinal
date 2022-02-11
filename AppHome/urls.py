@@ -24,6 +24,10 @@ urlpatterns = [
     path("informacion", views.informacion, name= 'informacion'),
 
     path('agregarAvatar', views.agregarAvatar, name="AgregarAvatar"),
+    path('EnviarMensaje', views.enviar_mensaje, name="EnviarMensaje"),
+    path('ListaMensajes/', views.MensajeList.as_view(), name = 'ListaMensajes'),
+    path("DetalleMensajes/<pk>/", views.MensajeDetalle.as_view(), name = 'DetalleMensajes'),
+    path('Mensajes', views.mensajes, name = 'Mensajes'),
     
 
    
