@@ -219,6 +219,7 @@ class MensajeList(ListView):
     model = Mensajeria
     template_name = "AppHome/ListaMensajes.html"
 
+
 class MensajeDetalle(DetailView):
 
     model = Mensajeria
