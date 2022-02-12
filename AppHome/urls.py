@@ -15,7 +15,8 @@ urlpatterns = [
     path("CrearPost", views.PostCreacion.as_view(), name = 'Crear'),
     path("ActualizarPost/<pk>/", views.PostUpdate.as_view(), name = 'Actualiza'),
     path("ElimnarPost/<pk>/", views.PostBorrar.as_view(), name = 'Borrar'),
-
+    path("Perfil", views.perfil, name = 'Perfil'),
+    path("InfoPerfil", views.info_perfil, name = 'InfoPerfil'),
 
     path("Login", views.login_request, name= 'Login'),
     path("Logout", LogoutView.as_view(template_name="AppHome/logout.html"), name = 'Logout'),

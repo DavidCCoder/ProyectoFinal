@@ -1,0 +1,18 @@
+{% extends 'AppHome/padre.html' %}
+
+{% load static %}
+
+{% block contenidocambiado %}
+    <br>
+    <p style="color: blue; margin-left: 10px;" >INFORMACION DE USUARIO</p>
+    
+
+    <ul>
+        <li>NOMBRE DE USUARIO: {{ user.username }}</li>
+        <li>EMAIL: {{ user.email }}</li>
+    </ul>
+
+    <a href="{% url 'Perfil' %}" style="margin-left: 10px;">Regresar</a>
+
+
+{% endblock contenidocambiado %}

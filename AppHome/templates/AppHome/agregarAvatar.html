@@ -2,10 +2,10 @@
 
 {% load static %}
 
-{% block contenidopost %}
+{% block contenidocambiado %}
     <br>
     <div style="margin-left: 20px;">
-        <h3>Cargar Avatar</h3>
+        <h3>Actualizar avatar</h3>
         <form method="POST" enctype="multipart/form-data">
 
             {% csrf_token %}
@@ -16,5 +16,11 @@
 
 
         </form>
+    </div>
+    <br>
 
-{% endblock contenidopost %}
+    <div style="margin-left: 20px;">
+        <a href="{% url 'Perfil' %}">Regresar</a>
+    </div>  
+
+{% endblock contenidocambiado %}

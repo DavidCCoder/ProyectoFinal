@@ -231,3 +231,11 @@ class MensajeDetalle(DetailView):
     model = Mensajeria
     template_name = "AppHome/DetalleMensajes.html"
 
+
+def perfil(request):
+
+    return render(request, 'AppHome/perfil.html')
+
+def info_perfil(request):
+
+    return render(request, 'AppHome/InfoPerfil.html')
