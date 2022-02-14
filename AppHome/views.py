@@ -76,13 +76,13 @@ class PostDetalle(DetailView):
 class PostCreacion(CreateView):
 
     model = Post
-    success_url = "/AppHome/ListaPost"
+    success_url = "/AppHome/pages/"
     fields = ['titulo', 'subtitulo']
 
 class PostUpdate(UserPassesTestMixin,UpdateView):
     
     model = Post
-    success_url = "/AppHome/ListaPost"
+    success_url = "/AppHome/pages/"
     #form_class = form_post
     fields = ['Titulo', 'Subtitulo', 'Cuerpo', 'Foto']
 
