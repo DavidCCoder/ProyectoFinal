@@ -10,8 +10,8 @@ urlpatterns = [
     
 
 
-    path("ListaPost/", views.PostList.as_view(), name = 'Lista'),
-    path("DetallePost/<pk>/", views.PostDetalle.as_view(), name = 'Detalle'),
+    path("pages/", views.PostList.as_view(), name = 'Lista'),
+    path("pages/<pk>/", views.PostDetalle.as_view(), name = 'Detalle'),
     path("CrearPost", views.PostCreacion.as_view(), name = 'Crear'),
     path("ActualizarPost/<pk>/", views.PostUpdate.as_view(), name = 'Actualiza'),
     path("ElimnarPost/<pk>/", views.PostBorrar.as_view(), name = 'Borrar'),
@@ -22,7 +22,7 @@ urlpatterns = [
     path("Logout", LogoutView.as_view(template_name="AppHome/logout.html"), name = 'Logout'),
     path("Register", views.register, name= 'Register'),
     path("editarPerfil", views.editarPerfil, name= "EditarPerfil"),
-    path("informacion", views.informacion, name= 'informacion'),
+    path("about", views.informacion, name= 'informacion'),
 
     path('agregarAvatar', views.agregarAvatar, name="AgregarAvatar"),
     path('EnviarMensaje', views.enviar_mensaje, name="EnviarMensaje"),
