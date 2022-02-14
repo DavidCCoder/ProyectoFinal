@@ -94,7 +94,7 @@ class PostUpdate(UserPassesTestMixin,UpdateView):
 class PostBorrar(UserPassesTestMixin,DeleteView):
 
     model = Post
-    success_url = "/AppHome/ListaPost"
+    success_url = "/AppHome/pages/"
     template_name = "AppHome/post.confirm.delete.html"
 
     def test_func(self):

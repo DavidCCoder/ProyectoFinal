@@ -9,12 +9,17 @@
 
     <span style="color:blue;border-image: initial; border: 3px solid blue; font-size: 30px; margin-left: 5px">Lista de Post: </span>
     <br>
-    <br>
+    <br>  
     <ul>
+    
+    {% if object_list %}   
+    
         {% for post in object_list %}
 
+        
+
             <li>
-                <p>TITULO: {{ post.Titulo }} </p>
+                <p>TITULO: {{ post.Titulo }} </p> 
                 <P>SUBTITULO: {{ post.Subtitulo }} </P>
                 <p> 
                     <a href="{% url 'Detalle' post.id %}">Ver</a> | 
@@ -24,6 +29,12 @@
             </li>
 
         {% endfor %}
+
+    {% else %}
+
+            NO HAY NINGUN POST
+    
+    {% endif %}
     </ul>
 
     <a href="{% url 'CrearPost'  %}">Nuevo</a> |
