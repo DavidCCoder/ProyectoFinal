@@ -238,4 +238,6 @@ def perfil(request):
 
 def info_perfil(request):
 
-    return render(request, 'AppHome/InfoPerfil.html')
+    avatares = Avatar.objects.filter(user=request.user.id)
+
+    return render(request, 'AppHome/InfoPerfil.html', {"url":avatares[0].imagen.url})

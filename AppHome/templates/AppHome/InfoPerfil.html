@@ -9,7 +9,10 @@
 
     <ul>
         <li>NOMBRE DE USUARIO: {{ user.username }}</li>
+        <br>
         <li>EMAIL: {{ user.email }}</li>
+        <br>
+        <li>AVATAR: <img height="100" width="100" src="{{url}}">
     </ul>
 
     <a href="{% url 'Perfil' %}" style="margin-left: 10px;">Regresar</a>
