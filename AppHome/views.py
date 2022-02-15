@@ -168,7 +168,7 @@ def editarPerfil(request):
                   usuario.password2 = informacion['password1']
                   usuario.save()
 
-                  return render(request, "AppHome/inicio.html") 
+                  return redirect("inicio") 
       
       else: 
             
